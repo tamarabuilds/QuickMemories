@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_height_paragraph"
+    android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/memory_date"
+        style="@style/Widget.QuickMemories.ListItemTextView"
+        android:layout_width="100dp"
+        android:layout_marginStart="@dimen/margin_between_elements"
+        android:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2022-05-05" />
+
+    <TextView
+        android:id="@+id/memory_text"
+        style="@style/Widget.QuickMemories.ListItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/memory_date"
+        android:layout_marginStart="@dimen/margin_between_elements"
+        android:fontFamily="sans-serif-medium"
+        android:singleLine="false"
+        android:layout_marginEnd="@dimen/margin_between_elements"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memory_date"
+        tools:text="We were in the car and Hija said the cloud looked like a dragon drinking tea." />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

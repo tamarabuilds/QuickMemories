@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ChildListFragment">
+
+    <fragment
+        android:id="@+id/ChildListFragment"
+        android:name="com.example.quickmemories.ChildListFragment"
+        android:label="@string/child_list_fragment_label"
+        tools:layout="@layout/fragment_child_list">
+        <action
+            android:id="@+id/action_ChildListFragment_to_childDetailFragment"
+            app:destination="@id/childDetailFragment" />
+        <action
+            android:id="@+id/action_ChildListFragment_to_addChildFragment3"
+            app:destination="@id/addChildFragment" />
+        <action
+            android:id="@+id/action_ChildListFragment_to_ChildMemoryFragment"
+            app:destination="@id/ChildMemoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ChildMemoryFragment"
+        android:name="com.example.quickmemories.ChildMemoryListFragment"
+        android:label="@string/child_memory_list_fragment_label"
+        tools:layout="@layout/fragment_child_memory_list">
+        <action
+            android:id="@+id/action_ChildMemoryFragment_to_memoryDetailFragment"
+            app:destination="@id/memoryDetailFragment" />
+        <action
+            android:id="@+id/action_ChildMemoryFragment_to_addMemoryFragment"
+            app:destination="@id/addMemoryFragment" />
+        <action
+            android:id="@+id/action_ChildMemoryFragment_to_ChildListFragment"
+            app:destination="@id/ChildListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addChildFragment"
+        android:name="com.example.quickmemories.AddChildFragment"
+        android:label="fragment_add_child"
+        tools:layout="@layout/fragment_add_child" >
+        <action
+            android:id="@+id/action_addChildFragment_to_ChildListFragment"
+            app:destination="@id/ChildListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/childDetailFragment"
+        android:name="com.example.quickmemories.ChildDetailFragment"
+        android:label="fragment_child_detail"
+        tools:layout="@layout/fragment_child_detail" >
+        <action
+            android:id="@+id/action_childDetailFragment_to_addChildFragment"
+            app:destination="@id/addChildFragment" />
+        <argument
+            android:name="child_id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/memoryDetailFragment"
+        android:name="com.example.quickmemories.MemoryDetailFragment"
+        android:label="fragment_memory_detail"
+        tools:layout="@layout/fragment_memory_detail" >
+        <action
+            android:id="@+id/action_memoryDetailFragment_to_addMemoryFragment"
+            app:destination="@id/addMemoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMemoryFragment"
+        android:name="com.example.quickmemories.AddMemoryFragment"
+        android:label="fragment_add_memory"
+        tools:layout="@layout/fragment_add_memory" >
+        <action
+            android:id="@+id/action_addMemoryFragment_to_ChildMemoryFragment"
+            app:destination="@id/ChildMemoryFragment" />
+    </fragment>
+</navigation>

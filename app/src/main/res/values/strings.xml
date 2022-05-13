@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Quick Memories</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="child_list_fragment_label">Child List Fragment</string>
+    <string name="child_memory_list_fragment_label">Child Memory List Fragment</string>
+    <string name="add_child">Add Child</string>
+    <string name="previous">Previous</string>
+    <string name="edit_child">Edit Child</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_action">Save</string>
+    <string name="child_name">Child Name</string>
+    <string name="child_pronouns">Child Pronouns:</string>
+    <string name="child_name_tool">Hija</string>
+    <string name="child_dob_tool">2002-02-02</string>
+    <string name="child_pronouns_tool">she/her</string>
+    <string name="memory_date_tool">2022-05-05</string>
+    <string name="memory_text_tool">Remember when Hija wanted to be a cloud?</string>
+    <string name="child_name_req">Child Name <font color='#FF0000'>*</font></string>
+    <string name="child_dob_req">Child Date of Birth <font color='#FF0000'>*</font></string>
+    <string name="child_pronouns_req">Child Pronouns <font color='#FF0000'>*</font></string>
+    <string name="memory_date_req">Memory Date <font color='#FF0000'>*</font></string>
+    <string name="memory_text_req">Memory Details<font color='#FF0000'>*</font></string>
+
+
+
+    <string name="hello_child_list_fragment">Hello child list fragment</string>
+    <string name="hello_child_memory_list_fragment">Hello child memory fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
