@@ -15,7 +15,7 @@
             app:destination="@id/childDetailFragment" />
         <action
             android:id="@+id/action_ChildListFragment_to_addChildFragment3"
-            app:destination="@id/addChildFragment" />
+            app:destination="@id/addEditChildFragment" />
         <action
             android:id="@+id/action_ChildListFragment_to_ChildMemoryFragment"
             app:destination="@id/ChildMemoryFragment" />
@@ -30,19 +30,26 @@
             app:destination="@id/memoryDetailFragment" />
         <action
             android:id="@+id/action_ChildMemoryFragment_to_addMemoryFragment"
-            app:destination="@id/addMemoryFragment" />
+            app:destination="@id/addEditMemoryFragment" />
         <action
             android:id="@+id/action_ChildMemoryFragment_to_ChildListFragment"
             app:destination="@id/ChildListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addChildFragment"
-        android:name="com.example.quickmemories.AddChildFragment"
-        android:label="fragment_add_child"
-        tools:layout="@layout/fragment_add_child" >
+        android:id="@+id/addEditChildFragment"
+        android:name="com.example.quickmemories.AddEditChildFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_add_edit_child" >
         <action
-            android:id="@+id/action_addChildFragment_to_ChildListFragment"
+            android:id="@+id/action_addEditChildFragment_to_ChildListFragment"
             app:destination="@id/ChildListFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="child_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/childDetailFragment"
@@ -50,8 +57,8 @@
         android:label="fragment_child_detail"
         tools:layout="@layout/fragment_child_detail" >
         <action
-            android:id="@+id/action_childDetailFragment_to_addChildFragment"
-            app:destination="@id/addChildFragment" />
+            android:id="@+id/action_childDetailFragment_to_addEditChildFragment"
+            app:destination="@id/addEditChildFragment" />
         <argument
             android:name="child_id"
             app:argType="integer" />
@@ -62,16 +69,16 @@
         android:label="fragment_memory_detail"
         tools:layout="@layout/fragment_memory_detail" >
         <action
-            android:id="@+id/action_memoryDetailFragment_to_addMemoryFragment"
-            app:destination="@id/addMemoryFragment" />
+            android:id="@+id/action_memoryDetailFragment_to_addEditMemoryFragment"
+            app:destination="@id/addEditMemoryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addMemoryFragment"
-        android:name="com.example.quickmemories.AddMemoryFragment"
+        android:id="@+id/addEditMemoryFragment"
+        android:name="com.example.quickmemories.AddEditMemoryFragment"
         android:label="fragment_add_memory"
-        tools:layout="@layout/fragment_add_memory" >
+        tools:layout="@layout/fragment_add_edit_memory" >
         <action
-            android:id="@+id/action_addMemoryFragment_to_ChildMemoryFragment"
+            android:id="@+id/action_addEditMemoryFragment_to_ChildMemoryFragment"
             app:destination="@id/ChildMemoryFragment" />
     </fragment>
 </navigation>

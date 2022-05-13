@@ -58,8 +58,8 @@ class ChildDetailFragment : Fragment() {
      * Navigate to the Edit Child screen.
      */
     private fun editChild() {
-        val action = ChildDetailFragmentDirections.actionChildDetailFragmentToAddChildFragment(
-           // child.childName
+        val action = ChildDetailFragmentDirections.actionChildDetailFragmentToAddEditChildFragment(
+            child.childName
         )
         this.findNavController().navigate(action)
     }

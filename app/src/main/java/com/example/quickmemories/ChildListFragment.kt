@@ -60,6 +60,7 @@ class ChildListFragment : Fragment() {
 
         binding.buttonAddChild.setOnClickListener {
             val action = ChildListFragmentDirections.actionChildListFragmentToAddChildFragment3(
+                getString(R.string.add_child)
             )
             this.findNavController().navigate(action)
         }

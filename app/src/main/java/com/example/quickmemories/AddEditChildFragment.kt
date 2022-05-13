@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.quickmemories.data.Child
-import com.example.quickmemories.databinding.FragmentAddChildBinding
+import com.example.quickmemories.databinding.FragmentAddEditChildBinding
 import com.example.quickmemories.model.QuickViewModel
 import com.example.quickmemories.model.QuickViewModelFactory
 
@@ -21,7 +21,7 @@ import com.example.quickmemories.model.QuickViewModelFactory
  * A simple [Fragment] subclass to add and edit a child in the Child database.
  */
 
-class AddChildFragment : Fragment() {
+class AddEditChildFragment : Fragment() {
 
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     // to share the ViewModel across fragments.
@@ -32,11 +32,11 @@ class AddChildFragment : Fragment() {
         )
     }
 
-    private val navigationArgs: ChildDetailFragmentArgs by navArgs()
+    private val navigationArgs: AddEditChildFragmentArgs by navArgs()
 
     lateinit var child: Child
 
-    private var _binding: FragmentAddChildBinding? = null
+    private var _binding: FragmentAddEditChildBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -44,7 +44,7 @@ class AddChildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAddChildBinding.inflate(inflater, container, false)
+        _binding = FragmentAddEditChildBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -84,7 +84,7 @@ class AddChildFragment : Fragment() {
                 binding.childNameAdd.text.toString(),
                 binding.childDobAdd.text.toString(),
             )
-            val action = AddChildFragmentDirections.actionAddChildFragmentToChildListFragment()
+            val action = AddEditChildFragmentDirections.actionAddEditChildFragmentToChildListFragment()
             findNavController().navigate(action)
         }
     }
@@ -99,7 +99,7 @@ class AddChildFragment : Fragment() {
                 this.binding.childNameAdd.text.toString(),
                 this.binding.childDobAdd.text.toString()
             )
-            val action = AddChildFragmentDirections.actionAddChildFragmentToChildListFragment()
+            val action = AddEditChildFragmentDirections.actionAddEditChildFragmentToChildListFragment()
             findNavController().navigate(action)
         }
     }
@@ -145,14 +145,3 @@ class AddChildFragment : Fragment() {
 
 
 }
-
-
-/**
- * override fun onCreate(savedInstanceState: Bundle?) {
-super.onCreate(savedInstanceState)
-arguments?.let {
-param1 = it.getString(ARG_PARAM1)
-param2 = it.getString(ARG_PARAM2)
-}
-}
- */
