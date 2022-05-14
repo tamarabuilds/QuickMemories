@@ -156,14 +156,14 @@ class QuickViewModel(private val childMemoryDao: ChildMemoryDao) : ViewModel() {
      * Returns true if the EditTexts are not empty
      */
     fun isEntryValidChild(childName: String, childDob: String): Boolean {
-        if (childName.isBlank() || childDob==null ) {
+        if (childName.isBlank() || childDob.isBlank() ) {
             return false
         }
         return true
     }
 
-    fun isEntryValidMemory(childId: Int, memoryDate: String,memoryText: String): Boolean {
-        if (childId==null || memoryDate==null || memoryText.isBlank()) {
+    fun isEntryValidMemory( memoryDate: String,memoryText: String): Boolean {
+        if ( memoryDate.isBlank() || memoryText.isBlank()) {
             return false
         }
         return true
@@ -207,7 +207,7 @@ class QuickViewModel(private val childMemoryDao: ChildMemoryDao) : ViewModel() {
 
 
 // This will instantiate the Quick View Model
-class QuickViewModelFactory(private val childMemoryDao: ChildMemoryDao) : ViewModelProvider.Factory{
+class QuickViewModelFactory(private val childMemoryDao: ChildMemoryDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(QuickViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

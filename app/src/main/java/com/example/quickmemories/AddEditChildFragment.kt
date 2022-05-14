@@ -118,8 +118,8 @@ class AddEditChildFragment : Fragment() {
 
         val id = navigationArgs.childId
         if (id > 0) {
-            viewModel.retrieveChild(id).observe(this.viewLifecycleOwner) { selectedItem ->
-                child = selectedItem
+            viewModel.retrieveChild(id).observe(this.viewLifecycleOwner) { selectedId ->
+                child = selectedId
                 bind(child)
             }
         } else {

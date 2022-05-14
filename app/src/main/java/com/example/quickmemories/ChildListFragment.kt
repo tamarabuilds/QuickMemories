@@ -59,8 +59,8 @@ class ChildListFragment : Fragment() {
 
 
         binding.buttonAddChild.setOnClickListener {
-            val action = ChildListFragmentDirections.actionChildListFragmentToAddChildFragment3(
-                getString(R.string.add_child)
+            val action = ChildListFragmentDirections.actionChildListFragmentToAddEditChildFragment(
+                getString(R.string.add_child), -1
             )
             this.findNavController().navigate(action)
         }

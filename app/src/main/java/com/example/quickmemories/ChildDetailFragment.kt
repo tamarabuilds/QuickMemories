@@ -59,7 +59,7 @@ class ChildDetailFragment : Fragment() {
      */
     private fun editChild() {
         val action = ChildDetailFragmentDirections.actionChildDetailFragmentToAddEditChildFragment(
-            child.childName
+        "Test", child.childId
         )
         this.findNavController().navigate(action)
     }
@@ -94,8 +94,8 @@ class ChildDetailFragment : Fragment() {
         // Retrieve the child details using the childId.
         // Attach an observer on the data (instead of polling for changes) and only update the
         // the UI when the data actually changes.
-        viewModel.retrieveChild(childId = childId).observe(this.viewLifecycleOwner) { selectedItem ->
-            child = selectedItem
+        viewModel.retrieveChild(childId).observe(this.viewLifecycleOwner) { selectedChild ->
+            child = selectedChild
             bind(child)
         }
     }
@@ -109,17 +109,4 @@ class ChildDetailFragment : Fragment() {
     }
 
 
-
-
-
 }
-
-/**
- *     override fun onCreate(savedInstanceState: Bundle?) {
-super.onCreate(savedInstanceState)
-arguments?.let {
-param1 = it.getString(ARG_PARAM1)
-param2 = it.getString(ARG_PARAM2)
-}
-}
- */

@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="child_list_fragment_label">Child List Fragment</string>
+    <string name="child_detail_fragment_label">Child Detail Fragment</string>
     <string name="child_memory_list_fragment_label">Child Memory List Fragment</string>
     <string name="add_child">Add Child</string>
     <string name="previous">Previous</string>
