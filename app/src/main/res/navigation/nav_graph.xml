@@ -43,6 +43,7 @@
             app:argType="string" />
         <argument
             android:name="child_id"
+            android:defaultValue="-1"
             app:argType="integer" />
         <action
             android:id="@+id/action_addEditChildFragment_to_ChildListFragment"

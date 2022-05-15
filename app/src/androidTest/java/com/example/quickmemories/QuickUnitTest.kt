@@ -10,11 +10,17 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.contrib.RecyclerViewActions.scrollTo
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
+import com.example.quickmemories.model.QuickViewModel
+import junit.framework.TestCase.assertEquals
 import org.hamcrest.Matchers.*
+import kotlin.coroutines.coroutineContext
 
 @RunWith(AndroidJUnit4::class)
 class QuickUnitTest {
@@ -48,13 +54,29 @@ class QuickUnitTest {
 
     @Test
     fun add_child() {
+  //      val viewModel = QuickViewModel(childMemoryDao = )
+  //      val testChild = viewModel.addNewChild(TEST_CHILD_NAME, TEST_DATE_OF_BIRTH)
+  //      assertEquals(TEST_CHILD_NAME, testChild.toString())
+
+        /**
         clickAddChild()
         enterAndSaveChildDetails()
 
-        // Check that test child created
-  //      onView(withId(R.id.recyclerViewChildList))
- //           .check(matches(withText(containsString(TEST_CHILD_NAME))))
 
+
+        onData(allOf("is"(instanceOf(List::class.java)),
+            hasEntry((equalTo("childName"),
+                "is"(TEST_CHILD_NAME)))))
+
+
+        // Check that test child created
+        onView(ViewMatchers.withId(R.id.recyclerViewChildList))
+           .perform(scrollTo<RecyclerView.ViewHolder>
+               (hasDescendant(withText(TEST_CHILD_NAME))))
+//               hasDescendant(withText(TEST_CHILD_NAME)))
+               //hasDescendant(withText(TEST_CHILD_NAME))))
+
+**/
     }
 }
 
