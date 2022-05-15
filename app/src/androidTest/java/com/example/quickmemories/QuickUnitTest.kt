@@ -58,10 +58,10 @@ class QuickUnitTest {
   //      val testChild = viewModel.addNewChild(TEST_CHILD_NAME, TEST_DATE_OF_BIRTH)
   //      assertEquals(TEST_CHILD_NAME, testChild.toString())
 
-        /**
+
         clickAddChild()
         enterAndSaveChildDetails()
-
+        /**
 
 
         onData(allOf("is"(instanceOf(List::class.java)),
