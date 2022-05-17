@@ -32,7 +32,7 @@ class ChildListAdapter(private val onChildClicked: (Child) -> Unit) :
         holder.bind(current)
     }
 
-    class ChildViewHolder(private var binding: ChildListChildBinding) :
+    class ChildViewHolder( var binding: ChildListChildBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
             fun bind(child: Child) {
