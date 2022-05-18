@@ -33,7 +33,7 @@ class CustomMatchers {
                 }
         }
 
-        fun withChildInViewHolder(childName: String): Matcher<View> {
+        fun confirmNameWithChildInViewHolder(childName: String): Matcher<View> {
             return object : BoundedMatcher<View, RecyclerView> (
                 RecyclerView::class.java
             ) {

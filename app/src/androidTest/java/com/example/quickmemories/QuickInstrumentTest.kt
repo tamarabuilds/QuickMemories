@@ -7,10 +7,11 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.quickmemories.CustomAssertions.Companion.hasItemCount
-import com.example.quickmemories.CustomMatchers.Companion.withChildInViewHolder
+import com.example.quickmemories.CustomMatchers.Companion.confirmNameWithChildInViewHolder
 import com.example.quickmemories.CustomMatchers.Companion.withItemCount
 import org.junit.Rule
 
@@ -45,24 +46,61 @@ class QuickInstrumentTest {
         onView(withId(R.id.button_save_child)).perform(click())
     }
 
+    private fun clickOnExistingChild() {
+        onView(withId(R.id.recyclerViewChildList))
+            .check(matches(confirmNameWithChildInViewHolder(TEST_CHILD_NAME)))
+            .perform(click())
+    }
+
+
+    /**
+     * Tests to count children on the initial screen. Used two methods.
+     */
     @Test
     fun countChildren() {
         onView(withId(R.id.recyclerViewChildList))
             .check(matches(withItemCount(COUNT)))
     }
 
-
-    @Test
-    fun seeChildNameOnView() {
-        onView(withId(R.id.recyclerViewChildList))
-            .check(matches(withChildInViewHolder(TEST_CHILD_NAME)))
-    }
-
-
     @Test
     fun countChildrenWithViewAssertion() {
         onView(withId(R.id.recyclerViewChildList))
             .check(hasItemCount(COUNT))
+    }
+
+
+    /**
+     * Test to add child
+     */
+    @Test
+    fun addChild() {
+        clickAddChild()
+        enterAndSaveChildDetails()
+
+
+        // Confirm child name on view
+        onView(withId(R.id.recyclerViewChildList))
+            .check(matches(confirmNameWithChildInViewHolder(TEST_CHILD_NAME)))
+    }
+
+
+    /**
+     * Test to delete child
+     */
+
+    @Test
+    fun deleteChild() {
+        // Click child and see delete screen
+        clickOnExistingChild()
+
+        onView(withId(R.id.button_delete_child))
+            .perform(click())
+
+        // agree to the pop up delete
+        onView(withText("YES"))
+            .inRoot(isDialog())
+            .check(matches(isDisplayed()))
+            .perform(click())
     }
 
 }
