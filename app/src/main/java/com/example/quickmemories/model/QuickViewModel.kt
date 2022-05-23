@@ -76,7 +76,7 @@ class QuickViewModel(private val childMemoryDao: ChildMemoryDao) : ViewModel() {
      */
     private fun insertChild(child: Child) {
         // start a coroutine
-        viewModelScope.launch {
+       viewModelScope.launch {
             childMemoryDao.insert(child)
         }
     }
@@ -126,7 +126,7 @@ class QuickViewModel(private val childMemoryDao: ChildMemoryDao) : ViewModel() {
      * Returns an instance of the [Child] entity class with the child info entered by the user.
      * This will be used to add a new entry to the Child database.
      */
-    private  fun getNewChildEntry(childName: String, childDob: String): Child {
+    private fun getNewChildEntry(childName: String, childDob: String): Child {
         return Child(
             childName = childName,
             childDob = childDob
