@@ -1,15 +1,8 @@
 package com.example.quickmemories
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.liveData
-import androidx.room.CoroutinesRoom
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -17,31 +10,27 @@ import com.example.quickmemories.data.Child
 import com.example.quickmemories.data.ChildMemoryDao
 import com.example.quickmemories.data.ChildMemoryRoomDatabase
 import com.example.quickmemories.model.QuickViewModel
-import com.example.quickmemories.model.QuickViewModelFactory
 import junit.framework.TestCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonCancellable.attachChild
-import kotlinx.coroutines.NonCancellable.children
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.mock
 import java.io.IOException
-import java.lang.Thread.*
 import java.util.concurrent.CountDownLatch
-import kotlin.jvm.Throws
+
 
 @RunWith(AndroidJUnit4::class)
 class ChildMemoryRoomDatabaseTest : TestCase() {
+
 
     // Constants for testing without needing to call an instance
     companion object {
         const val TEST_CHILD_NAME = "dbTestChild"
         const val TEST_DATE_OF_BIRTH = "2022-02-05"           // LocalDate.parse("2022-02-01")
+        const val TEST_CHILD_NAME_EDIT = "editedChildName"
+        const val TEST_DATE_OF_BIRTH_EDIT = "1444-04-04"
     }
 
     private lateinit var childMemoryDao: ChildMemoryDao
@@ -60,6 +49,7 @@ class ChildMemoryRoomDatabaseTest : TestCase() {
         childMemoryDao =db.childMemoryDao()
         viewModel = QuickViewModel(childMemoryDao)
 
+
     }
 
     @After
@@ -71,9 +61,10 @@ class ChildMemoryRoomDatabaseTest : TestCase() {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
+
     @Test
     @Throws(Exception::class)
-    fun writeAndReadChildMemory() = runBlocking {
+    fun writeAndReadChild() = runBlocking {
         val countDown = CountDownLatch(1)
 
         // Creating an observer to watch for any changes in allChildren.
@@ -105,6 +96,63 @@ class ChildMemoryRoomDatabaseTest : TestCase() {
         assert(false)
 
     }
+
+
+    @Test
+    @Throws(Exception::class)
+    fun retrieveAndEditChild() = runBlocking {
+
+        // Adding child to db for edit test
+        writeAndReadChild()
+
+        val countDownEdit = CountDownLatch(1)
+
+        // Creating an observer to watch for any changes in allChildren.
+        // If there are changes, observer will be called.
+        viewModel.allChildren.observeForever {
+            Log.d("Testing", "Do we see this observer?")
+            if (it[0].childName == TEST_CHILD_NAME_EDIT && it[0].childDob == TEST_DATE_OF_BIRTH_EDIT) {
+                countDownEdit.countDown()
+            }
+        }
+
+        //Get childId that was just added
+        val childrenEdit = viewModel.allChildren.value
+        if (childrenEdit == null) {
+            Log.d("Testing", "childrenEdit list is null")
+        }
+
+
+        for (i in childrenEdit!!) {
+            if (i.childName == TEST_CHILD_NAME
+                && i.childDob == TEST_DATE_OF_BIRTH
+            ) {
+                val testChildId = i.childId
+                Log.d("Testing", "childId was found and set")
+                viewModel.updateChild(testChildId, TEST_CHILD_NAME_EDIT, TEST_DATE_OF_BIRTH_EDIT )
+
+                // Wait for allChildren to update child before this code continues
+                countDownEdit.await()
+
+                val editedChild = viewModel.retrieveChild(testChildId).getOrAwaitValue()
+                Log.d("Testing", "editedChild child is: $editedChild")
+
+
+                assertEquals(editedChild.childName , TEST_CHILD_NAME_EDIT)
+                assertEquals(editedChild.childDob, TEST_DATE_OF_BIRTH_EDIT)
+                return@runBlocking
+
+            }
+        }
+        assert(false)
+
+    }
+
+
+
+
+
+
 
 
 

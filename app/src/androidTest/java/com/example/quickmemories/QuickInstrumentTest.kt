@@ -83,6 +83,20 @@ class QuickInstrumentTest {
             .check(matches(confirmNameWithChildInViewHolder(TEST_CHILD_NAME)))
     }
 
+    /**
+     * Test to edit child
+     */
+    @Test
+    fun editChild() {
+        // Click child and see delete screen
+        clickOnExistingChild()
+
+        //
+    }
+
+
+
+
 
     /**
      * Test to delete child
